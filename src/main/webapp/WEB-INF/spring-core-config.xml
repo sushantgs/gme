@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd ">
+
+	<context:component-scan base-package="com.vaayu.service" />
+
+	<bean id="billDAO" class="com.vaayu.database.dao.BillDAO">
+		<property name="paymentDAO" ref="paymentDAO" />
+	</bean>
+	<bean id="paymentDAO" class="com.vaayu.database.dao.PaymentDAO">
+		<property name="billDAO" ref="billDAO" />
+	</bean>
+	<bean id="attachmentDAO" class="com.vaayu.database.dao.AttachmentDAO">
+		<property name="billDAO" ref="billDAO" />
+	</bean>
+	<bean id="adminService" class="com.vaayu.service.AdminService">
+		<property name="attachmentDAO" ref="attachmentDAO" />
+		<property name="billDAO" ref="billDAO" />
+	</bean>
+	<bean id="paymentService" class="com.vaayu.service.PaymentService">
+		<property name="billDAO" ref="billDAO" />
+		<property name="paymentDAO" ref="paymentDAO" />
+	</bean>
+
+</beans>
