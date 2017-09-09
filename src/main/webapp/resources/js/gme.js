@@ -1,5 +1,5 @@
 
-var app = angular.module('gmeApp', ['ngRoute', 'ui.bootstrap', 'ui.grid',
+var app = angular.module('gmeApp', ['ngRoute', 'ui.grid',
                                     'ui.grid.pagination', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.cellNav', 'ui.grid.exporter']);
 
 app.config(function($routeProvider){
